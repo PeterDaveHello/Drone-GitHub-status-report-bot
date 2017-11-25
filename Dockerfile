@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:edge
 MAINTAINER Peter Dave Hello <hsu@peterdavehello.org>
 ADD main.sh /
 RUN apk -U upgrade && \
