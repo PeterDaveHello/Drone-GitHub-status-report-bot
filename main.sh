@@ -3,14 +3,14 @@
 set -e
 
 err() {
-    >&2 echo "==========ERROR==========";
-    >&2 echo "$@";
-    >&2 echo "==========ERROR==========";
-    exit 1;
+    echo >&2 "==========ERROR=========="
+    echo >&2 "$@"
+    echo >&2 "==========ERROR=========="
+    exit 1
 }
 
 if [ "${CI}" != "drone" ] && [ "${DRONE}" != "true" ]; then
-    err "Not a Drone CI environment";
+    err "Not a Drone CI environment"
 fi
 
 if ! echo "${DRONE_REPO_LINK}" | grep -q 'github.com'; then
