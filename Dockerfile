@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER Peter Dave Hello <hsu@peterdavehello.org>
+LABEL maintainer="Peter Dave Hello <hsu@peterdavehello.org>"
 COPY main.sh /
 RUN apk -U upgrade && \
     apk -v add curl openssl && \
