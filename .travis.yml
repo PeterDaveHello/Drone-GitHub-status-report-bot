@@ -1,0 +1,26 @@
+---
+
+language: generic
+sudo: required
+git:
+  depth: 5
+services:
+  - docker
+
+matrix:
+  include:
+  - env:
+      - task=shellcheck
+    before_install:
+      - bash --version
+      - shellcheck --version
+    script:
+      - bash -n main.sh
+      - shellcheck -e SC1117 main.sh
+
+  - env:
+      - task=shfmt
+    script:
+      - docker run -it --rm -v "$(pwd)":/sh -w /sh peterdavehello/shfmt:2.5.1 shfmt -sr -i 4 -l -w -ci .
+      - git diff --color
+      - git diff --stat=220 --color --exit-code
