@@ -6,4 +6,4 @@ COPY main.sh /
 RUN apk -U upgrade && \
     apk -v add curl openssl && \
     rm -rf /var/cache/apk/*
-ENTRYPOINT /main.sh
+ENTRYPOINT ["/main.sh"]
