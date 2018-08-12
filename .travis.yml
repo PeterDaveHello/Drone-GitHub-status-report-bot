@@ -24,3 +24,13 @@ matrix:
       - docker run -it --rm -v "$(pwd)":/sh -w /sh peterdavehello/shfmt:2.5.1 shfmt -sr -i 4 -l -w -ci .
       - git diff --color
       - git diff --stat=220 --color --exit-code
+
+  - env:
+      - task=dockerfile_lint
+    language: node_js
+    node_js:
+      - 8
+    install:
+      - npm install --global dockerfile_lint
+    script:
+      - dockerfile_lint Dockerfile
