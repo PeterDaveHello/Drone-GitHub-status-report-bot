@@ -13,7 +13,7 @@ if [ "${CI}" != "drone" ] && [ "${DRONE}" != "true" ]; then
     err "Not a Drone CI environment"
 fi
 
-if ! echo "${DRONE_REPO_LINK}" | grep -q 'github.com'; then
+if ! echo "${DRONE_REPO_LINK}" | grep -q 'github'; then
     err "Repository is not on GitHub"
 fi
 
