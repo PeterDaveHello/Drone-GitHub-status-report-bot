@@ -35,7 +35,8 @@ else
     REVIEW_CONTENT="Oops :fearful: ${DRONE_REPO_LINK}/commit/${DRONE_COMMIT_SHA} CI test failed :exclamation: \n\n@${DRONE_COMMIT_AUTHOR} please take a look at CI build ${DRONE_BUILD_LINK} for details :memo: !\n Most of the error will have corresponding explanation, so that you will know what's wrong and then try to fix it!\n If you cannot understand the error message and need help, feel free to ask  our maintainers :relaxed: "
 fi
 
-API_URL="https://api.github.com/repos/${DRONE_REPO}/pulls/${DRONE_PULL_REQUEST}/reviews"
+GITHUB_API_HOST=${GITHUB_API_HOST:-https://api.github.com}
+API_URL="${GITHUB_API_HOST}/repos/${DRONE_REPO}/pulls/${DRONE_PULL_REQUEST}/reviews"
 REVIEW="{ \"body\": \"${REVIEW_CONTENT}\", \"event\": \"${REVIEW_EVENT}\"}"
 
 curl --silent -H "Accept: application/vnd.github.black-cat-preview+json" -H "Authorization: token ${GITHUB_TOKEN}" -d "${REVIEW}" "${API_URL}" > /dev/null
